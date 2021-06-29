@@ -20,9 +20,10 @@ bot.message(with_text: /~!refresh/) do |event|
   event.respond 'Refreshed'
 end
 
-bot.message(start_with: /~!name \d+/) do |event|
-  captures = event.message.content.match(/~!name (\d+)/).captures
-  number = captures[0].to_i || 5
+bot.message(start_with: /~!name/) do |event|
+  captures = event.message.content.match(/~!name (\d+)/)&.captures
+  number = 1 unless captures
+  number ||= captures[0].to_i || 5
   names = number.times.collect do
     name_list.generate_name
   end
