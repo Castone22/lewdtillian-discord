@@ -1,1 +1,1 @@
-bot: bundle update && bundle exec lewdtillian
+bot: bundle exec ruby exe/lewdtillian

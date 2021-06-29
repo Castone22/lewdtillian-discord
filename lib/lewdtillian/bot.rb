@@ -6,7 +6,7 @@ require 'pry'
 
 name_list = Lewdtillian::NameList.new
 
-token = File.read("#{__dir__}/../../tokens/discord.token")
+token = File.read("#{__dir__}/../../tokens/discord.token") if File.exist?("#{__dir__}/../../tokens/discord.token")
 token ||= ENV['DISCORD_TOKEN']
 
 bot = Discordrb::Bot.new token: token
