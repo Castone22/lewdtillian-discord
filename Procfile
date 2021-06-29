@@ -1,1 +1,1 @@
-bot: bundle exec
+bot: bundle exec lewdtillian
