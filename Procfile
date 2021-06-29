@@ -1,1 +1,1 @@
-bot: bundle exec lewdtillian
+bot: bundle exec ruby lib/lewdtillian/bot
