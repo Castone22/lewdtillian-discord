@@ -6,7 +6,10 @@ require 'pry'
 
 name_list = Lewdtillian::NameList.new
 
-bot = Discordrb::Bot.new token: File.read("#{__dir__}/../../tokens/discord.token")
+token = File.read("#{__dir__}/../../tokens/discord.token")
+token ||= ENV['DISCORD_TOKEN']
+
+bot = Discordrb::Bot.new token: token
 
 bot.message(with_text: '~!ping') do |event|
   event.respond 'Pong!'

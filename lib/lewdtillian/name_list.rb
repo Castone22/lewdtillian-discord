@@ -17,9 +17,14 @@ module Lewdtillian
       @service = Google::Apis::SheetsV4::SheetsService.new
       @service.client_options.application_name = APPLICATION_NAME
       @service.authorization = Google::Auth::ServiceAccountCredentials.make_creds(
-        json_key_io: File.open(CREDENTIALS_PATH),
+        json_key_io: key_io,
         scope: SCOPE
       )
+    end
+
+    def key_io
+      return File.open(CREDENTIALS_PATH) if File.exist?(CREDENTIALS_PATH)
+      StringIO.new(ENV['GOOGLE_AUTH_JSON'])
     end
 
     def initialize
