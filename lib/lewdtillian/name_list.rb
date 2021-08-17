@@ -42,7 +42,7 @@ module Lewdtillian
 
     def refresh
       response = @service.get_spreadsheet_values SPREADSHEET_ID, RANGE
-      weights = @service.get_spreadsheet_values SPREADSHEET_ID, WEGHT_DATA
+      weights = @service.get_spreadsheet_values SPREADSHEET_ID, WEIGHT_DATA
       puts weights
       @weights = weights.values
       @names = response.values.each_with_object({ first_names: [], last_names: [], titles: [], mods: [] }) do |row, hash|
