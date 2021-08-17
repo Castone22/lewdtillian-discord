@@ -15,6 +15,10 @@ bot.message(with_text: '~!ping') do |event|
   event.respond 'Pong!'
 end
 
+bot.message(with_text: /~!help/) do |event|
+  event.responsd "Available Commands:\nname: (integer) generates a name or list of names:\n list: returns the name source spreadsheet, average: (dice roll like 3d6+2d4) generates a link to anydice solving your distribution, refresh: refreshes the cached name list, needed after adding new names"
+end
+
 bot.message(with_text: /~!refresh/) do |event|
   name_list.refresh
   event.respond 'Refreshed'
@@ -30,7 +34,7 @@ bot.message(start_with: /~!name/) do |event|
   event.respond "\n#{names.join("\n")}"
 end
 
-bot.message(start_with: /~!name list/) do |event|
+bot.message(with_text: /~!list/) do |event|
   event.respond 'https://docs.google.com/spreadsheets/d/1hhD1CJEZ6prYWEC9PmnyiDeBPNJNsUAvNfmUqkj_Mrs'
 end
 
@@ -40,6 +44,9 @@ bot.message(start_with: /~!average/) do |event|
   uri = URI('https://anydice.com/createLink.php')
   res = Net::HTTP.post_form(uri, **payload)
   event.respond res.body
+end
+
+bot.message(start_with: /~!distribution/) do |event|
 end
 
 bot.run
