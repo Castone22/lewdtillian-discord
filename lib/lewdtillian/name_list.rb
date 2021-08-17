@@ -11,6 +11,7 @@ module Lewdtillian
     CREDENTIALS_PATH = "#{__dir__}/../../tokens/summer-monument-209904-717128bee0de.json".freeze
     SCOPE = Google::Apis::SheetsV4::AUTH_SPREADSHEETS_READONLY
     RANGE = "NameList!A2:D"
+    WEIGHT_DATA = "NameList!G2:G4"
     SPREADSHEET_ID = "1hhD1CJEZ6prYWEC9PmnyiDeBPNJNsUAvNfmUqkj_Mrs"
 
     def auth
@@ -35,8 +36,14 @@ module Lewdtillian
       @names || refresh
     end
 
+    def weights
+      @weights || refresh
+    end
+
     def refresh
       response = @service.get_spreadsheet_values SPREADSHEET_ID, RANGE
+      weights = @service.get_spreadsheet_values SPREADSHEET_ID, WEGHT_DATA
+      @weights = weights.values
       @names = response.values.each_with_object({ first_names: [], last_names: [], titles: [], mods: [] }) do |row, hash|
         hash.keys.each_with_index do |key, index|
           hash[key] << row[index] unless row[index].nil? || row[index].empty?
@@ -46,11 +53,11 @@ module Lewdtillian
 
     def generate_name
       roll = rand(1..20)
-      size = if roll < 7
+      size = if roll < @weights[0]
                2
-             elsif roll < 13
+             elsif roll < @weights[1]
                3
-             elsif roll < 17
+             elsif roll < @weights[2]
                4
              else
                1
