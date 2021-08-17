@@ -43,6 +43,7 @@ module Lewdtillian
     def refresh
       response = @service.get_spreadsheet_values SPREADSHEET_ID, RANGE
       weights = @service.get_spreadsheet_values SPREADSHEET_ID, WEGHT_DATA
+      puts weights
       @weights = weights.values
       @names = response.values.each_with_object({ first_names: [], last_names: [], titles: [], mods: [] }) do |row, hash|
         hash.keys.each_with_index do |key, index|
@@ -53,11 +54,11 @@ module Lewdtillian
 
     def generate_name
       roll = rand(1..20)
-      size = if roll < @weights[0]
+      size = if roll < weights[0]
                2
-             elsif roll < @weights[1]
+             elsif roll < weights[1]
                3
-             elsif roll < @weights[2]
+             elsif roll < weights[2]
                4
              else
                1
