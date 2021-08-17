@@ -45,13 +45,24 @@ module Lewdtillian
     end
 
     def generate_name
-      name = Array.new(rand(1..4)) { |index| index }
+      roll = rand(1..20)
+      size = if roll < 7
+               2
+             elsif roll < 13
+               3
+             elsif roll < 17
+               4
+             else
+               1
+             end
+      name = Array.new(size) { |index| index }
       name.map! { |index| names[names.keys[index]].sample }
-      use_mod = rand(0..20) > 15 
+
       if name.size == 1
-        mod = @names[:mods].sample if use_mod
+        mod = @names[:mods].sample
         "#{name[0]}#{mod}"
       else
+        use_mod = rand(0..20) > 15
         mod = name.delete_at(3)
         mod = nil unless use_mod
         name[0] = "#{name[0]}#{name.delete_at(1)}" if name[0][-1] == '-'
