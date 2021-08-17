@@ -16,7 +16,7 @@ bot.message(with_text: '~!ping') do |event|
 end
 
 bot.message(with_text: /~!help/) do |event|
-  event.responsd "Available Commands:\nname: (integer) generates a name or list of names:\n list: returns the name source spreadsheet, average: (dice roll like 3d6+2d4) generates a link to anydice solving your distribution, refresh: refreshes the cached name list, needed after adding new names"
+  event.respond "Available Commands:\nname: (integer) generates a name or list of names:\n list: returns the name source spreadsheet, average: (dice roll like 3d6+2d4) generates a link to anydice solving your distribution, refresh: refreshes the cached name list, needed after adding new names"
 end
 
 bot.message(with_text: /~!refresh/) do |event|
