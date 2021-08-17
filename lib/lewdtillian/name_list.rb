@@ -47,11 +47,13 @@ module Lewdtillian
     def generate_name
       name = Array.new(rand(1..4)) { |index| index }
       name.map! { |index| names[names.keys[index]].sample }
+      use_mod = rand(0..20) > 15 
       if name.size == 1
-        mod = @names[:mods].sample
+        mod = @names[:mods].sample if use_mod
         "#{name[0]}#{mod}"
       else
         mod = name.delete_at(3)
+        mod = nil unless use_mod
         name[0] = "#{name[0]}#{name.delete_at(1)}" if name[0][-1] == '-'
         name.insert(-2, 'the') if name.size >= 3
         name[1] = "#{name[1]}#{mod}"
