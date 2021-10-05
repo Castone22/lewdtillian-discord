@@ -66,7 +66,7 @@ module Lewdtillian
       name.map! { |index| names[names.keys[index]].sample }
 
       if name.size == 1
-        mod = @names[:mods].sample
+        mod = names[:mods].sample
         "#{name[0]}#{mod}"
       else
         use_mod = rand(0..20) > 15
