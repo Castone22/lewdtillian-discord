@@ -52,6 +52,7 @@ module Lewdtillian
     end
 
     def generate_name
+      refresh unless @weights && @names
       roll = rand(1..20)
       size = if roll < weights[0]
                2
