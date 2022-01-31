@@ -2,7 +2,6 @@ require 'discordrb'
 require 'faker'
 require 'active_support/inflector'
 require_relative 'name_list'
-require_relative 'sinatra_server'
 require 'pry'
 
 name_list = Lewdtillian::NameList.new
