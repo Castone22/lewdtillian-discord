@@ -1,1 +1,1 @@
-bot: bundle exec ruby exe/lewdtillian
+web: bundle exec ruby exe/lewdtillian
