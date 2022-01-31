@@ -34,4 +34,5 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'discordrb'
   spec.add_dependency 'activesupport'
   spec.add_dependency 'google-api-client'
+  spec.add_dependency 'sinatra'
 end
